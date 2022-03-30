@@ -34,7 +34,7 @@ if (isset($_POST["deleteTodoBTN"])) {
     <div>
         <?= $todo->description; ?>
         <form action="" method="post" id="deletefrm">
-            <input type="hidden" name="dltid" id="dltbtnid" value="<?= $todo->id; ?>">
+            <input type="hidden" name="dltid" value="<?= $todo->id; ?>">
             <button type="submit" name="deleteTodoBTN">Delete</button>
         </form>
     </div>
