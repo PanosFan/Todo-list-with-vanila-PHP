@@ -16,6 +16,13 @@ if (isset($_POST["deleteTodoBTN"])) {
 }
 ?>
 
+<!-- update todo -->
+<?php
+if (isset($_POST["updateTodoBTN"])) {
+    updateTodo($_POST['updated'], $_POST["dltid"]);
+}
+?>
+
 <!-- get todos function-->
 <?php $todos = getTodo(); ?>
 
@@ -35,10 +42,24 @@ if (isset($_POST["deleteTodoBTN"])) {
         <?= $todo->description; ?>
         <form action="" method="post" id="deletefrm">
             <input type="hidden" name="dltid" value="<?= $todo->id; ?>">
+            <input type="text" name="updated" class="updateInput">
+            <button type="submit" name="updateTodoBTN" class="submitUpdateBTN">Update</button>
             <button type="submit" name="deleteTodoBTN">Delete</button>
         </form>
     </div>
     <?php endforeach; ?>
 </div>
+
+
+
+<!-- <div class=" bg-modal">
+                <div class="modal-contents">
+                    <div class="close">+</div>
+                    <form action="">
+                        <input type="text" placeholder="Name">
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+    </div> -->
 
 <?php require_once './footer.php'; ?>

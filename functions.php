@@ -1,6 +1,5 @@
 <?php
 
-
 function getTodo()
 {
     global $db;
@@ -12,10 +11,12 @@ function getTodo()
 
 function addTodo($todo)
 {
-    global $db;
-    $sql = "INSERT INTO todo (description) VALUES (?)";
-    $statement = $db->prepare($sql);
-    $statement->execute([$todo]);
+    if (!empty($todo)) {
+        global $db;
+        $sql = "INSERT INTO todo (description) VALUES (?)";
+        $statement = $db->prepare($sql);
+        $statement->execute([$todo]);
+    }
 }
 
 function deleteTodo($id)
@@ -24,4 +25,12 @@ function deleteTodo($id)
     $sql = "DELETE FROM todo WHERE id=?";
     $statement = $db->prepare($sql);
     $statement->execute([$id]);
+}
+
+function updateTodo($value, $id)
+{
+    global $db;
+    $sql = "UPDATE todo SET description = ? WHERE id=?";
+    $statement = $db->prepare($sql);
+    $statement->execute([$value, $id]);
 }
