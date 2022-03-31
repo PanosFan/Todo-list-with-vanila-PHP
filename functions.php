@@ -29,8 +29,10 @@ function deleteTodo($id)
 
 function updateTodo($value, $id)
 {
-    global $db;
-    $sql = "UPDATE todo SET description = ? WHERE id=?";
-    $statement = $db->prepare($sql);
-    $statement->execute([$value, $id]);
+    if (!empty($value)) {
+        global $db;
+        $sql = "UPDATE todo SET description = ? WHERE id=?";
+        $statement = $db->prepare($sql);
+        $statement->execute([$value, $id]);
+    }
 }
