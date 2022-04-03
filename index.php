@@ -36,17 +36,30 @@ if (isset($_POST["updateTodoBTN"])) {
         </form>
 
         <!-- show todo -->
-        <?php foreach ($todos as $todo) : ?>
-        <?= $todo->description; ?>
-        <form action="" method="post" id="deletefrm">
-            <input type="hidden" name="dltid" value="<?= $todo->id; ?>">
-            <input type="text" name="updated" class="updateInput">
-            <button type="submit" name="updateTodoBTN" class="submitUpdateBTN">Update</button>
+        <?php foreach ($todos as $todo) :
+            echo  "<p class=\"warning\">Task: $todo->id</p>";
+            echo $todo->description;
+        ?>
+
+        <form action="" method="post" class="phpForm">
+            <input type="hidden" name="dltid" id="hidval" value="<?= $todo->id; ?>">
+            <button type="button" id="button1" class="submitUpdateBTN">Update</button>
             <button type="submit" name="deleteTodoBTN">Delete</button>
         </form>
+
         <?php endforeach; ?>
 
     </div>
 </main>
+<div class="bg-modal">
+    <div class="modal-contents">
+        <div class="close">+</div>
+        <form action="" method="post">
+            <input type="hidden" name="dltid" id="placeholder">
+            <input type="text" name="updated" class="updateInput">
+            <button type="submit" name="updateTodoBTN" class="submitUpdateBTN">Update</button>
+        </form>
 
+    </div>
+</div>
 <?php require_once './footer.php'; ?>
